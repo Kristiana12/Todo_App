@@ -1,36 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Todo app</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
+    <title>Frontend Mentor | Todo app</title>
+    <link rel="stylesheet" href="public/css/style.css" />
+    <script src="public/js/main.js" defer></script>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <!-- <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+  </style> -->
+  </head>
+  <body>
+    <header>
+      <div class="background"></div>
+    </header>
 
-  Todo
+    <main class="container">
+      <!-- Position absolute -->
+      <h1 class="main-title">Todo</h1>
 
-  <!-- Add dynamic number --> items left
+      <div class="todo-container">
+        <form id="form__todo">
+          <div class="circle"></div>
+          <input type="text" placeholder="Add your goal here..." />
+        </form>
 
-  All
-  Active 
-  Completed
+        <ul class="todo__list">
+          <li>
+            <div class="circle"></div>
+            <p class="todo__text">10 minutes meditation</p>
+          </li>
+          <li>
+            <div class="circle"></div>
+            <p class="todo__text">Read for 1 hour</p>
+          </li>
+          <li>
+            <div class="circle"></div>
+            <p class="todo__text">Cmoplete Todo app in Fronten Mentor</p>
+          </li>
 
-  Clear Completed
+          <div class="todo-options">
+            <p><span class="todo__list-items--number">5</span>items left</p>
+            <p data-all="all">All</p>
+            <p data-active="active">Active</p>
+            <p data-completed="completed">Completed</p>
+            <p data-clear="clear">Clear Completed</p>
+          </div>
+        </ul>
+      </div>
 
-  Drag and drop to reorder list
+      <p class="todo__drag-drop--text">Drag and drop to reorder list</p>
+    </main>
 
-  <div class="attribution">
+    <!-- <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+  </div> -->
+  </body>
 </html>

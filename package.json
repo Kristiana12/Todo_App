@@ -1,0 +1,21 @@
+{
+  "name": "todo_app",
+  "version": "1.0.0",
+  "description": "![Design preview for the Todo app coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kristiana12/Todo_App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kristiana12/Todo_App/issues"
+  },
+  "homepage": "https://github.com/Kristiana12/Todo_App#readme"
+}
