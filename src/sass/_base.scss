@@ -1,0 +1,66 @@
+:root {
+  --color-white: #ffffff;
+  --color-primary: #ffffff;
+  --color-primary-text: #494c6b;
+  --color-secondary-text: #9394a5;
+  --color-light-text: #d4d4d4;
+  --color-active: #3a7cfd;
+  --color-circle: #979797;
+  --color-background: #fafafa;
+}
+
+.dark {
+  --color-primary: #25273c;
+  --color-primary-text: #e4e5f1;
+  --color-secondary-text: #cacde8;
+  --color-deleted-text: #4d5067;
+  --color-circle: #777a92;
+  --color-background: #161722;
+}
+
+//Color
+$linear: 135deg, #57ddff, #c058f3;
+
+// FONT SIZES
+$font-size-xs: 0.85rem;
+$font-size-s: 1rem;
+
+$border-radius: 5px;
+$gap-list: 0.75rem;
+$box-shadow: -5px 8px 30px 8px rgba(0, 0, 0, 0.08);
+
+//RESET
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: var(--color-background);
+}
+
+ul {
+  list-style: none;
+}
+
+//TYPOGRAPHY
+h1.main-title {
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+}
+
+//OUTLINE
+input:focus {
+  outline-color: var(--color-active);
+}
+
+input:placeholder-shown {
+  color: var(--color-secondary-text);
+}

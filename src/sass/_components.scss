@@ -1,0 +1,84 @@
+@use 'base' as *;
+
+//modus icon
+.toggle-modus {
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    filter: brightness(1) sepia(1) saturate(10000%);
+  }
+}
+
+//circle
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--color-circle);
+}
+
+//List Item
+.todo__list--item {
+  display: flex;
+  justify-content: space-between;
+  gap: $gap-list;
+  padding: 1.25rem;
+  color: var(--color-primary-text);
+
+  &:not(l:last-of-type) {
+    border-bottom: 1px solid var(--color-light-text);
+  }
+
+  //align left
+  p {
+    margin-right: auto;
+  }
+
+  //ICON
+  .checked-icon {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .circle {
+    cursor: pointer;
+  }
+
+  //WHEN CHECKED
+  .circle[data-checkable='true'] {
+    background: linear-gradient($linear) no-repeat center/cover;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  //DELETED TEXT WHEN CHECKED
+  .circle[data-checkable='true'] + p {
+    text-decoration: line-through;
+    color: var(--color-light-text);
+  }
+}
+
+//JS checked item
+.todo__list--item.checked .checked-icon {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+}
+
+.delete-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+
+  svg path {
+    transition: fill 0.4s;
+  }
+
+  &:hover svg path {
+    fill: crimson;
+  }
+}

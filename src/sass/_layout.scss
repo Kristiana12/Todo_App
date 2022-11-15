@@ -1,0 +1,120 @@
+@use 'base' as *;
+
+//HEADER
+header {
+  .background {
+    width: 100vw;
+    height: 250px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+//TO DO LIST
+.container {
+  position: absolute;
+  width: min(90%, 540px);
+  left: 50%;
+  transform: translateX(-50%);
+  top: 3rem;
+
+  &__heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+}
+
+//FORM INPUT
+#form__todo {
+  background-color: var(--color-primary);
+  display: block;
+  padding: 1.15rem 1.125rem;
+  border-radius: $border-radius;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: $gap-list;
+
+  input {
+    flex: 1;
+    border: 0;
+    padding: 0.5rem;
+    font-family: inherit;
+    color: var(--color-secondary-text);
+    font-size: $font-size-xs;
+    caret-color: var(--color-active);
+  }
+}
+
+//LIST TO DO - ITEMS
+.todo__list {
+  border-radius: $border-radius;
+  overflow: hidden;
+  background-color: var(--color-primary);
+  box-shadow: $box-shadow;
+}
+
+// TO DO OPTIONS
+.todo__list--options,
+.todo__list--sort {
+  color: var(--color-secondary-text);
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+
+  p {
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  p:hover {
+    color: var(--color-active);
+  }
+}
+
+.todo__list--options {
+  justify-content: space-between;
+}
+
+.todo__list--sort {
+  justify-content: center;
+  margin-top: 1rem;
+  background-color: var(--color-primary);
+  border-radius: $border-radius;
+  gap: 1.25rem;
+  box-shadow: $box-shadow;
+
+  &.desktop {
+    display: none;
+  }
+
+  p.active {
+    color: var(--color-active);
+  }
+
+  @media screen and (min-width: 768px) {
+    &.mobile {
+      display: none;
+    }
+
+    &.desktop {
+      display: block;
+
+      display: flex;
+      margin-top: 0;
+      gap: 1.25rem;
+      box-shadow: none;
+    }
+  }
+}
+
+.todo__drag-drop--text {
+  text-align: center;
+  color: var(--color-secondary-text);
+  margin-top: 3rem;
+}
