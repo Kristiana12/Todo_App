@@ -7,6 +7,9 @@
   --color-active: #3a7cfd;
   --color-circle: #979797;
   --color-background: #fafafa;
+  --color-background-hover: #ebebeb;
+  --color-background-modal: rgba(73, 76, 107, 0.6);
+  --color-error: #cd1237;
 }
 
 .dark {
@@ -16,6 +19,8 @@
   --color-deleted-text: #4d5067;
   --color-circle: #777a92;
   --color-background: #161722;
+  --color-background-hover: #1c1e35;
+  --color-background-modal: rgb(228, 229, 241, 0.6);
 }
 
 //Color
@@ -43,6 +48,7 @@ html,
 body {
   font-family: 'Josefin Sans', sans-serif;
   background-color: var(--color-background);
+  transition: 0.3s;
 }
 
 ul {

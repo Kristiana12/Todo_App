@@ -1,7 +1,7 @@
 @use 'base' as *;
 
 //modus icon
-.toggle-modus {
+.toggle-theme {
   cursor: pointer;
   transition: 0.3s;
 
@@ -79,6 +79,73 @@
   }
 
   &:hover svg path {
-    fill: crimson;
+    fill: var(--color-error);
+  }
+}
+
+//DELETE MODAL
+.modal__delete.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal__delete.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal__delete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-background-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: 0.4s;
+
+  /* GLASSMORPHISM*/
+  -webkit-backdrop-filter: blur(15.5px);
+  backdrop-filter: blur(12.5px);
+
+  .modal__delete--content {
+    width: min(90%, 400px);
+    background-color: var(--color-primary);
+    border-radius: $border-radius;
+    padding: 2rem;
+
+    p {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+// BUTTONS
+
+.btn-primary {
+  padding: 0.5rem 1rem;
+  border: 0;
+  font-family: inherit;
+  border-radius: $border-radius;
+  background-color: var(--color-background);
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:hover {
+    background-color: var(--color-background-hover);
+  }
+
+  &.accept {
+    color: var(--color-white);
+    background-color: var(--color-error);
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
