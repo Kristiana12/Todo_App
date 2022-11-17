@@ -6,6 +6,9 @@ const listLengthEl = todoList.querySelector('.todo__list-items--number');
 const deleteModalEl = document.querySelector('.modal__delete');
 const toggleThemeBtn = document.querySelector('.toggle-theme');
 
+const sortContainers = document.querySelectorAll('.todo__list--sort');
+const clearCompletedBtn = document.querySelector('[data-clear]');
+
 class App {
   listArr = [];
   selectedListItem;
@@ -25,6 +28,10 @@ class App {
     });
 
     toggleThemeBtn.addEventListener('click', this._toggleTheme.bind(this));
+    clearCompletedBtn.addEventListener(
+      'click',
+      this._clearCompletedTasks.bind(this)
+    );
   }
 
   //Helper Functions
@@ -62,35 +69,25 @@ class App {
     this.#closeDeleteModal();
   }
 
-  #declineDeleteModal() {
-    this.#closeDeleteModal();
-    //if escape is clicked
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        this.#closeDeleteModal();
-      }
-    });
-  }
-
-  #toggleModusText(modus, othermodus) {
+  #toggleModusText(currModus, otherModus) {
     const backgroundImg = document.querySelector('.background-img');
     const backgroundEl = document.querySelector('.background');
 
-    let imgHtml = `images/bg-desktop-${modus}.jpg`;
-    let ariaLabelHtml = `switch to ${othermodus} modus`;
-    let altHtml = `switch to ${othermodus} modus`;
+    let imgHtml = `images/bg-desktop-${currModus}.jpg`;
+    let ariaLabelHtml = `switch to ${otherModus} modus`;
+    let altHtml = `switch to ${otherModus} modus`;
     let pictureHtml = `
       <picture>
         <source
           media="(max-width:599px)"
-          srcset="images/bg-mobile-${modus}.jpg"
+          srcset="images/bg-mobile-${currModus}.jpg"
         />
         <source
           media="(min-width:600px)"
-          srcset="images/bg-desktop-${modus}.jpg"
+          srcset="images/bg-desktop-${currModus}.jpg"
         />
         <img
-          src="images/bg-mobile-${modus}.jpg"
+          src="images/bg-mobile-${currModus}.jpg"
           class="background-img"
           aria-hidden="true"
         />
@@ -118,7 +115,8 @@ class App {
       </svg>`;
 
     const liEl = document.createElement('li');
-    liEl.className = 'todo__list--item';
+    liEl.className = 'todo__list--item active';
+    liEl.setAttribute('draggable', 'true');
     liEl.innerHTML = `
               <div class="circle" data-checkable="false">
                   <img
@@ -134,28 +132,29 @@ class App {
         `;
 
     todoList.insertAdjacentElement('afterbegin', liEl);
-    this.listArr.push(liEl);
+    this.listArr.unshift(liEl);
     this.#emptyInput();
     this.#displayListLength();
   }
 
   _displayModal(e) {
     const target = e.target.closest('.delete-icon');
-    this.selectedListItem = target; //save the targeted list item
+    this.selectedListItem = target; //save the targeted list item to delete when user clicks 'Yes'
     if (!target) return;
     this.#showDeleteModal();
   }
 
   _checkListItem(e) {
-    const target = e.target;
-    if (!target.classList.contains('circle')) return;
+    if (!e.target.classList.contains('circle')) return;
 
-    if (target.getAttribute('data-checkable') === 'false') {
-      target.setAttribute('data-checkable', 'true');
-      target.parentElement.classList.add('checked');
+    if (e.target.getAttribute('data-checkable') === 'false') {
+      e.target.setAttribute('data-checkable', 'true');
+      e.target.parentElement.classList.add('checked');
+      e.target.parentElement.classList.remove('active');
     } else {
-      target.setAttribute('data-checkable', 'false');
-      target.parentElement.classList.remove('checked');
+      e.target.setAttribute('data-checkable', 'false');
+      e.target.parentElement.classList.remove('checked');
+      e.target.parentElement.classList.add('active');
     }
   }
 
@@ -163,31 +162,84 @@ class App {
     if (e.target.classList.contains('accept')) {
       this.#acceptDeleteModal(this.selectedListItem);
     } else if (e.target.classList.contains('decline')) {
-      this.#declineDeleteModal();
+      this.#closeDeleteModal();
     } else {
       return;
     }
   }
 
   _toggleTheme() {
-    let modus;
+    let currModus;
     let otherModus;
     if (document.documentElement.classList.contains('dark')) {
-      modus = 'light';
+      currModus = 'light';
       otherModus = 'dark';
-      this.#toggleModusText(modus, otherModus);
+      this.#toggleModusText(currModus, otherModus);
       toggleThemeBtn.src = 'images/icon-moon.svg';
       document.documentElement.classList.remove('dark');
     } else {
-      modus = 'dark';
+      currModus = 'dark';
       otherModus = 'light';
-      this.#toggleModusText(modus, otherModus);
+      this.#toggleModusText(currModus, otherModus);
       toggleThemeBtn.src = 'images/icon-sun.svg';
       document.documentElement.classList.add('dark');
     }
   }
+
+  _clearCompletedTasks() {
+    this.listArr.forEach((item) => {
+      if (item.classList.contains('checked')) {
+        this.#updateListUI(item);
+      }
+    });
+
+    const listArrCleared = this.listArr.filter(
+      (item) => !item.classList.contains('checked')
+    );
+
+    this.listArr = listArrCleared;
+    this.#displayListLength();
+  }
+}
+
+class SortingItems {
+  constructor() {
+    sortContainers.forEach((container) =>
+      container.addEventListener('click', this._sorting.bind(this))
+    );
+  }
+
+  #classHandler(e) {
+    const sortOptions = document.querySelectorAll('p[data-sort]');
+    sortOptions.forEach((option) => option.classList.remove('active'));
+    e.target.classList.add('active');
+  }
+
+  #sortOnCondition(condition) {
+    const allItems = document.querySelectorAll('.todo__list--item');
+
+    allItems.forEach((item) => {
+      if (item.classList.contains(condition)) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  _sorting(e) {
+    if (e.target.dataset.sort === 'all') {
+      this.#sortOnCondition('todo__list--item');
+      this.#classHandler(e);
+    } else if (e.target.dataset.sort === 'active') {
+      this.#sortOnCondition('active');
+      this.#classHandler(e);
+    } else if (e.target.dataset.sort === 'completed') {
+      this.#sortOnCondition('checked');
+      this.#classHandler(e);
+    } else return;
+  }
 }
 
 new App();
-
-//Lazy loading
+new SortingItems();

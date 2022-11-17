@@ -119,3 +119,13 @@ header {
   color: var(--color-secondary-text);
   margin-top: 3rem;
 }
+
+//ANIMATIONS
+@keyframes blur {
+  0% {
+    filter: blur(4px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}

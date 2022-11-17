@@ -116,6 +116,7 @@
   .modal__delete--content {
     width: min(90%, 400px);
     background-color: var(--color-primary);
+    color: var(--color-primary-text);
     border-radius: $border-radius;
     padding: 2rem;
 
@@ -133,6 +134,7 @@
   font-family: inherit;
   border-radius: $border-radius;
   background-color: var(--color-background);
+  color: var(--color-primary-text);
   cursor: pointer;
   transition: 0.4s;
 
