@@ -25,6 +25,7 @@
   gap: $gap-list;
   padding: 1.25rem;
   color: var(--color-primary-text);
+  cursor: move;
 
   &:not(l:last-of-type) {
     border-bottom: 1px solid var(--color-light-text);
@@ -150,4 +151,12 @@
       opacity: 0.8;
     }
   }
+}
+
+//when dragged
+.dragging {
+  background-color: var(--color-primary-text);
+  color: var(--color-primary);
+  opacity: 0.7;
+  transition: 0.4s;
 }

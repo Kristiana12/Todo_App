@@ -2,7 +2,7 @@
 
 const todoForm = document.getElementById('form__todo');
 const todoList = document.querySelector('.todo__list');
-const listLengthEl = todoList.querySelector('.todo__list-items--number');
+const listLengthEl = document.querySelector('.todo__list-items--number');
 const deleteModalEl = document.querySelector('.modal__delete');
 const toggleThemeBtn = document.querySelector('.toggle-theme');
 
@@ -16,21 +16,31 @@ class App {
   constructor() {
     //Handlers
     this.#displayListLength();
+    //create task
     todoForm.addEventListener('submit', this._createListItem.bind(this));
 
+    //check selected task and add the modal listener to be able to delete task
     todoList.addEventListener('click', (e) => {
       this._checkListItem(e);
       this._displayModal(e);
     });
 
+    //delete selected task or close delete modal without deleting
     deleteModalEl.addEventListener('click', (e) => {
       this._handleModal(e);
     });
 
+    //toggle dark-light modus
     toggleThemeBtn.addEventListener('click', this._toggleTheme.bind(this));
     clearCompletedBtn.addEventListener(
       'click',
       this._clearCompletedTasks.bind(this)
+    );
+
+    //Dragging functionality
+    todoList.addEventListener(
+      'dragover',
+      this._dragAndDropContainer.bind(this)
     );
   }
 
@@ -100,12 +110,50 @@ class App {
     backgroundEl.innerHTML = pictureHtml;
   }
 
+  #dragAndDropItem() {
+    const items = document.querySelectorAll('.todo__list--item');
+    //styling the dragging items (class)
+    items.forEach((item) => {
+      item.addEventListener('dragstart', () => {
+        item.classList.add('dragging');
+      });
+      item.addEventListener('dragend', () => {
+        item.classList.remove('dragging');
+      });
+    });
+  }
+
+  //get the after element relative to the dragging element (Y axis)
+  #afterDragElement(y) {
+    //Select all the list elements except from the one being dragged
+    const draggableElements = [
+      ...todoList.querySelectorAll('.todo__list--item:not(.dragging)'),
+    ];
+
+    //Loop through the elements' list and determine which single element is right after our mouse cursor based on the y position that we pass in
+    return draggableElements.reduce(
+      (closest, child) => {
+        const box = child.getBoundingClientRect();
+        //Get half of the box on the y axis
+        const offset = y - box.top - box.height / 2;
+        //First the number needs to be negative, that is how we know that we are hovering over another child element, but we need the closest one, so the one which offset is the smallest
+        if (offset < 0 && offset > closest.offset) {
+          return { offset: offset, element: child };
+        } else {
+          return closest;
+        }
+      },
+      { offset: Number.NEGATIVE_INFINITY }
+    ).element;
+  }
+
   //App functions
   _createListItem(e) {
     e.preventDefault();
     const inputValue = todoForm.querySelector('input').value;
 
     if (inputValue === '') return;
+
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
         <path
           fill="#9394a5"
@@ -135,6 +183,9 @@ class App {
     this.listArr.unshift(liEl);
     this.#emptyInput();
     this.#displayListLength();
+
+    //make the drag n drop styling
+    this.#dragAndDropItem();
   }
 
   _displayModal(e) {
@@ -199,6 +250,17 @@ class App {
 
     this.listArr = listArrCleared;
     this.#displayListLength();
+  }
+
+  _dragAndDropContainer(e) {
+    const draggingItem = todoList.querySelector('.dragging');
+
+    const afterItem = this.#afterDragElement(e.clientY);
+    if (afterItem === null) {
+      todoList.appendChild(draggingItem);
+    } else {
+      todoList.insertBefore(draggingItem, afterItem);
+    }
   }
 }
 

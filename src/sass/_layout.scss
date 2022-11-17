@@ -54,11 +54,20 @@ header {
 }
 
 //LIST TO DO - ITEMS
-.todo__list {
-  border-radius: $border-radius;
-  overflow: hidden;
+.todo__list,
+.todo__list--options {
   background-color: var(--color-primary);
+  overflow: hidden;
+}
+
+.todo__list {
+  border-radius: 5px 5px 0 0;
+}
+
+.todo__list--options {
+  border-radius: $border-radius;
   box-shadow: $box-shadow;
+  justify-content: space-between;
 }
 
 // TO DO OPTIONS
@@ -76,10 +85,6 @@ header {
   p:hover {
     color: var(--color-active);
   }
-}
-
-.todo__list--options {
-  justify-content: space-between;
 }
 
 .todo__list--sort {
