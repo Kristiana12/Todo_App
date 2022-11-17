@@ -5,6 +5,10 @@ header {
   .background {
     width: 100vw;
     height: 250px;
+
+    @media screen and (min-width: 600px) {
+      height: 320px;
+    }
   }
 
   img {
@@ -21,6 +25,10 @@ header {
   left: 50%;
   transform: translateX(-50%);
   top: 3rem;
+
+  @media screen and (min-width: 600px) {
+    top: 100px;
+  }
 
   &__heading {
     display: flex;

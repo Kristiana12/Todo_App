@@ -28,6 +28,7 @@ $linear: 135deg, #57ddff, #c058f3;
 // FONT SIZES
 $font-size-xs: 0.85rem;
 $font-size-s: 1rem;
+$font-size-m: 2.8rem;
 
 $border-radius: 5px;
 $gap-list: 0.75rem;
@@ -59,6 +60,10 @@ h1.main-title {
   color: var(--color-white);
   text-transform: uppercase;
   letter-spacing: 6px;
+
+  @media screen and (min-width: 600px) {
+    font-size: $font-size-m;
+  }
 }
 
 //OUTLINE
