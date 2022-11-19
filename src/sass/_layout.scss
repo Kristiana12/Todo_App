@@ -21,10 +21,10 @@ header {
 //TO DO LIST
 .container {
   position: absolute;
-  width: min(90%, 540px);
+  width: min(90%, 640px);
   left: 50%;
   transform: translateX(-50%);
-  top: 3rem;
+  top: 2.5rem;
 
   @media screen and (min-width: 600px) {
     top: 100px;
@@ -52,7 +52,7 @@ header {
   input {
     flex: 1;
     border: 0;
-    padding: 0.5rem;
+    padding: 0.5rem 0;
     font-family: inherit;
     color: var(--color-secondary-text);
     background-color: var(--color-primary);
@@ -81,7 +81,7 @@ header {
 // TO DO OPTIONS
 .todo__list--options,
 .todo__list--sort {
-  color: var(--color-secondary-text);
+  color: var(--color-light-text);
   display: flex;
   align-items: center;
   padding: 1.25rem;
@@ -129,7 +129,7 @@ header {
 
 .todo__drag-drop--text {
   text-align: center;
-  color: var(--color-secondary-text);
+  color: var(--color-light-text);
   margin-top: 3rem;
 }
 

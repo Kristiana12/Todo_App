@@ -3,7 +3,7 @@
   --color-primary: #ffffff;
   --color-primary-text: #494c6b;
   --color-secondary-text: #9394a5;
-  --color-light-text: #d4d4d4;
+  --color-light-text: #bbbbbb;
   --color-active: #3a7cfd;
   --color-circle: #d6d6d6;
   --color-background: #fafafa;
@@ -16,8 +16,8 @@
   --color-primary: #25273c;
   --color-primary-text: #e4e5f1;
   --color-secondary-text: #cacde8;
-  --color-deleted-text: #4d5067;
-  --color-circle: #777a92;
+  --color-light-text: rgba(212, 212, 212, 0.4);
+  --color-circle: rgba(182, 182, 182, 0.3);
   --color-background: #161722;
   --color-background-hover: #1c1e35;
 }
@@ -31,7 +31,7 @@ $font-size-s: 1rem;
 $font-size-m: 2.8rem;
 
 $border-radius: 5px;
-$gap-list: 0.75rem;
+$gap-list: 1rem;
 $box-shadow: -5px 8px 30px 8px rgba(0, 0, 0, 0.08);
 
 //RESET

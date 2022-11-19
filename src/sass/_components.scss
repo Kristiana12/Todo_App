@@ -27,6 +27,14 @@
   color: var(--color-primary-text);
   cursor: move;
 
+  //On devices with mouse
+  @media (hover: hover) {
+    &:hover .delete-icon {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
   &:not(l:last-of-type) {
     border-bottom: 1px solid var(--color-light-text);
   }
@@ -74,6 +82,22 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
+
+  @media (hover: hover) {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+
+    &:hover {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  @media (hover: none) {
+    visibility: visible;
+    opacity: 1;
+  }
 
   svg path {
     transition: fill 0.4s;
