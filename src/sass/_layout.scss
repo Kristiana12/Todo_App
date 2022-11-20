@@ -27,7 +27,7 @@ header {
   top: 2.5rem;
 
   @media screen and (min-width: 600px) {
-    top: 100px;
+    top: 90px;
   }
 
   &__heading {
@@ -56,7 +56,7 @@ header {
     font-family: inherit;
     color: var(--color-secondary-text);
     background-color: var(--color-primary);
-    font-size: $font-size-xs;
+    font-size: $font-size-s;
     caret-color: var(--color-active);
   }
 }
@@ -84,14 +84,14 @@ header {
   color: var(--color-light-text);
   display: flex;
   align-items: center;
-  padding: 1.25rem;
+  padding: 0.8rem 1.25rem;
 
   p {
     cursor: pointer;
     transition: color 0.3s;
   }
   p:hover {
-    color: var(--color-active);
+    color: var(--color-primary-text);
   }
 }
 

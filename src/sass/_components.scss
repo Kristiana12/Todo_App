@@ -10,22 +10,15 @@
   }
 }
 
-//circle
-.circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1px solid var(--color-circle);
-}
-
 //List Item
 .todo__list--item {
   display: flex;
   justify-content: space-between;
   gap: $gap-list;
-  padding: 1.25rem;
+  padding: 1.5rem;
   color: var(--color-primary-text);
   cursor: move;
+  position: relative;
 
   //On devices with mouse
   @media (hover: hover) {
@@ -37,6 +30,38 @@
 
   &:not(l:last-of-type) {
     border-bottom: 1px solid var(--color-light-text);
+  }
+
+  //circle
+  .circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--color-circle);
+    background-color: var(--color-primary);
+    position: relative;
+    z-index: 5;
+    transition: 0.5s;
+  }
+
+  span {
+    position: absolute;
+    top: calc(1.5rem - 1px);
+    left: calc(1.5rem - 1px);
+    border-radius: 50%;
+    display: block;
+    width: 22px;
+    height: 22px;
+    background-image: linear-gradient($linear);
+    opacity: 0;
+    transition: 0.5s;
+  }
+
+  .circle:hover {
+    border: 0px solid var(--color-circle);
+  }
+  .circle:hover + span {
+    opacity: 1;
   }
 
   //align left

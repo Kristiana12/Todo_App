@@ -86,7 +86,8 @@ class Task {
                         alt="ckecked"
                         class="checked-icon"
                       />
-                    </div>
+                      </div>
+                    <span></span>
                     <p class="todo__list--item__text">${this.task}</p>
                     <div class="delete-icon">
                       ${svg}
