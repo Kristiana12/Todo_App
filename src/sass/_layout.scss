@@ -3,7 +3,7 @@
 //HEADER
 header {
   .background {
-    width: 100vw;
+    width: 100%;
     height: 250px;
 
     @media screen and (min-width: 600px) {
@@ -21,7 +21,7 @@ header {
 //TO DO LIST
 .container {
   position: absolute;
-  width: min(90%, 640px);
+  width: min(90%, 610px);
   left: 50%;
   transform: translateX(-50%);
   top: 2.5rem;
@@ -134,7 +134,7 @@ header {
 .todo__drag-drop--text {
   text-align: center;
   color: var(--color-light-text);
-  margin-top: 3rem;
+  margin: 3rem auto;
 }
 
 //ANIMATIONS

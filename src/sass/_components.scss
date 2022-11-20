@@ -14,7 +14,7 @@
 .todo__list--item {
   display: flex;
   justify-content: space-between;
-  gap: $gap-list;
+  gap: 1.35rem;
   padding: 1.25rem 1rem;
   color: var(--color-primary-text);
   cursor: move;
@@ -36,29 +36,14 @@
     border-bottom: 1px solid var(--color-light-text);
   }
 
-  //circle
-  .circle {
-    //to prevent from changing width and height when more text is written
-    width: 20px;
-    min-width: 20px;
-    height: 20px;
-    min-height: 20px;
-    border-radius: 50%;
-    border: 1px solid var(--color-circle);
-    background-color: var(--color-primary);
-    position: relative;
-    z-index: 5;
-    transition: 0.5s;
-  }
-
   span {
     position: absolute;
     top: calc(1.25rem - 1px);
     left: calc(1rem - 1px);
     border-radius: 50%;
     display: block;
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     background-image: linear-gradient($linear);
     opacity: 0;
     transition: 0.5s;
@@ -79,6 +64,8 @@
   //align left
   p {
     margin-right: auto;
+    align-self: center;
+    font-size: $font-size-s;
   }
 
   //ICON
@@ -220,4 +207,19 @@
   color: var(--color-primary);
   opacity: 0.7;
   transition: 0.4s;
+}
+
+//circle
+.circle {
+  //to prevent from changing width and height when more text is written
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--color-circle);
+  background-color: var(--color-primary);
+  position: relative;
+  z-index: 5;
+  transition: 0.5s;
 }
