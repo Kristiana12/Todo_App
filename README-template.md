@@ -20,6 +20,12 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 
 ## Overview
 
+After learning about Object Oriented Programming in Javascript, I decided to build a Todo App with ES6 Classes and use everything I had learned so far.
+
+After completing the project, I felt more comfortable about writing ES6 Classes' syntax and had a better grasp of the 'this' keyword (mainly in which element it refers to and how to change the object it refers to with the .bind() method), how to use prototypal inheritance between classes to avoid repetitive code with the 'extends' and the 'super()' keyword.
+
+Furthermore, I added a drag-and-drop functionality with vanilla javascript after learning about the HTML Drag and Drop API to reorder the tasks.
+
 ### The challenge
 
 Users should be able to:
